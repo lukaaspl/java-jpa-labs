@@ -8,4 +8,8 @@ public interface PatientService {
     public PatientTO findById(final Long id);
 
     public List<PatientTO> findAll();
+
+    public Long count();
+
+    public void delete(final Long id);
 }
