@@ -1,8 +1,7 @@
 package com.capgemini.wsb.persistence.dao;
 
-import com.capgemini.wsb.persistence.entity.AddressEntity;
+import com.capgemini.wsb.persistence.entity.PatientEntity;
 
-public interface AddressDao extends Dao<AddressEntity, Long>
-{
+public interface PatientDao extends Dao<PatientEntity, Long> {
 
 }

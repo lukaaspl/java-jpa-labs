@@ -42,8 +42,11 @@ public class PatientEntity {
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
 
+	@Column(nullable = false)
+	private Boolean isInsured;
+
 	// 1-to-many relationship (parent, bidirectional)
-	@OneToMany(mappedBy = "patient", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
 	private Set<VisitEntity> visits = new HashSet<>();
 
 	// many-to-many relationship (parent, unidirectional)
@@ -107,6 +110,30 @@ public class PatientEntity {
 
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+
+	public Boolean getIsInsured() {
+		return isInsured;
+	}
+
+	public void setIsInsured(Boolean isInsured) {
+		this.isInsured = isInsured;
+	}
+
+	public Set<VisitEntity> getVisits() {
+		return visits;
+	}
+
+	public void setVisits(Set<VisitEntity> visits) {
+		this.visits = visits;
+	}
+
+	public Set<AddressEntity> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(Set<AddressEntity> addresses) {
+		this.addresses = addresses;
 	}
 	// #endregion
 }

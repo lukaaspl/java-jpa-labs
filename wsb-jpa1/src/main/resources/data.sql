@@ -27,6 +27,20 @@ VALUES (
         '51-015'
     );
 
+INSERT INTO
+    ADDRESS (
+        ID,
+        CITY,
+        ADDRESS_LINE1,
+        POSTAL_CODE
+    )
+VALUES (
+        3,
+        'Gdańsk',
+        'Dokowa 4c',
+        '74-912'
+    );
+
 -- sample doctor
 INSERT INTO
     DOCTOR (
@@ -50,7 +64,7 @@ VALUES (
 
 INSERT INTO DOCTOR_ADDRESS (DOCTOR_ID, ADDRESS_ID) VALUES (1, 1);
 
--- sample patient
+-- sample patients
 INSERT INTO
     PATIENT (
         ID,
@@ -59,7 +73,8 @@ INSERT INTO
         FIRST_NAME,
         LAST_NAME,
         PATIENT_NUMBER,
-        TELEPHONE_NUMBER
+        TELEPHONE_NUMBER,
+        IS_INSURED,
     )
 VALUES (
         1,
@@ -68,10 +83,35 @@ VALUES (
         'Adam',
         'Nowak',
         '313412250',
-        '902313541'
+        '902313541',
+        TRUE
     );
 
 INSERT INTO PATIENT_ADDRESS (PATIENT_ID, ADDRESS_ID) VALUES (1, 2);
+
+INSERT INTO
+    PATIENT (
+        ID,
+        DATE_OF_BIRTH,
+        EMAIL,
+        FIRST_NAME,
+        LAST_NAME,
+        PATIENT_NUMBER,
+        TELEPHONE_NUMBER,
+        IS_INSURED,
+    )
+VALUES (
+        2,
+        DATE '1996-02-23',
+        'zbigniew.stonoga@example.com',
+        'Zbigniew',
+        'Stonoga',
+        '412341255',
+        '314123921',
+        FALSE
+    );
+
+INSERT INTO PATIENT_ADDRESS (PATIENT_ID, ADDRESS_ID) VALUES (2, 3);
 
 -- sample visit
 INSERT INTO

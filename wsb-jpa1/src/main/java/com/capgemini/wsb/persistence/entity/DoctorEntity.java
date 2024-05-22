@@ -47,7 +47,7 @@ public class DoctorEntity {
 	private Specialization specialization;
 
 	// 1-to-many relationship (parent, bidirectional)
-	@OneToMany(mappedBy = "doctor", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
 	private Set<VisitEntity> visits = new HashSet<>();
 
 	// many-to-many relationship (parent, unidirectional)
@@ -59,6 +59,7 @@ public class DoctorEntity {
 	// #region Getters and Setters
 	public Long getId() {
 		return id;
+
 	}
 
 	public void setId(Long id) {
