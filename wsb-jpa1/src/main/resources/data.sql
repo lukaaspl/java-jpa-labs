@@ -102,6 +102,30 @@ INSERT INTO
     )
 VALUES (
         2,
+        DATE '1992-01-01',
+        'joanna.nowak@example.com',
+        'Joanna',
+        'Nowak',
+        '313121250',
+        '902424541',
+        TRUE
+    );
+
+INSERT INTO PATIENT_ADDRESS (PATIENT_ID, ADDRESS_ID) VALUES (2, 2);
+
+INSERT INTO
+    PATIENT (
+        ID,
+        DATE_OF_BIRTH,
+        EMAIL,
+        FIRST_NAME,
+        LAST_NAME,
+        PATIENT_NUMBER,
+        TELEPHONE_NUMBER,
+        IS_INSURED,
+    )
+VALUES (
+        3,
         DATE '1996-02-23',
         'zbigniew.stonoga@example.com',
         'Zbigniew',
@@ -111,9 +135,9 @@ VALUES (
         FALSE
     );
 
-INSERT INTO PATIENT_ADDRESS (PATIENT_ID, ADDRESS_ID) VALUES (2, 3);
+INSERT INTO PATIENT_ADDRESS (PATIENT_ID, ADDRESS_ID) VALUES (3, 3);
 
--- sample visit
+-- sample visits
 INSERT INTO
     VISIT (
         ID,
@@ -128,6 +152,38 @@ VALUES (
         TIMESTAMP '2021-01-01 12:00:00',
         1,
         1
+    );
+
+INSERT INTO
+    VISIT (
+        ID,
+        DESCRIPTION,
+        TIME,
+        DOCTOR_ID,
+        PATIENT_ID
+    )
+VALUES (
+        2,
+        'Aenean nec nisl nec nisl fringilla',
+        TIMESTAMP '2022-02-02 13:00:00',
+        1,
+        1
+    );
+
+INSERT INTO
+    VISIT (
+        ID,
+        DESCRIPTION,
+        TIME,
+        DOCTOR_ID,
+        PATIENT_ID
+    )
+VALUES (
+        3,
+        'Praesent vitae nisl non turpis luctus fringilla',
+        TIMESTAMP '2023-03-03 14:00:00',
+        1,
+        2
     );
 
 -- sample treatments

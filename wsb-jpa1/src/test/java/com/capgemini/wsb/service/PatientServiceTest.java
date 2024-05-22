@@ -57,16 +57,16 @@ public class PatientServiceTest {
     @Test
     public void testShouldRemoveAllRelatedVisitsOncePatientIsRemoved() {
         // given
-        int visitsNumBefore = visitService.findByPatientId(1L).size();
+        int visitsNumBefore = visitService.findAllByPatientId(1L).size();
 
         // then
-        assertThat(visitsNumBefore).isEqualTo(1);
+        assertThat(visitsNumBefore).isEqualTo(2);
 
         // when
         patientService.delete(1L);
 
         // then
-        assertThat(visitService.findByPatientId(1L).size()).isEqualTo(0);
+        assertThat(visitService.findAllByPatientId(1L).size()).isEqualTo(0);
     }
 
     @Transactional

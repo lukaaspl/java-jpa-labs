@@ -31,8 +31,8 @@ public class VisitServiceImpl implements VisitService {
     }
 
     @Override
-    public List<VisitTO> findByPatientId(Long patientId) {
-        final List<VisitEntity> entities = visitDao.findByPatientId(patientId);
+    public List<VisitTO> findAllByPatientId(Long patientId) {
+        final List<VisitEntity> entities = visitDao.findAllByPatientId(patientId);
 
         return entities.stream().map(VisitMapper::mapToTO).collect(Collectors.toList());
     }

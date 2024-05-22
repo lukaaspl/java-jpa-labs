@@ -5,5 +5,5 @@ import java.util.List;
 import com.capgemini.wsb.persistence.entity.VisitEntity;
 
 public interface VisitDao extends Dao<VisitEntity, Long> {
-    List<VisitEntity> findByPatientId(final Long id);
+    List<VisitEntity> findAllByPatientId(final Long id);
 }

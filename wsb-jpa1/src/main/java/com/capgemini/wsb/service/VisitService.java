@@ -7,5 +7,5 @@ import com.capgemini.wsb.dto.VisitTO;
 public interface VisitService {
     public VisitTO findById(final Long id);
 
-    public List<VisitTO> findByPatientId(final Long id);
+    public List<VisitTO> findAllByPatientId(final Long id);
 }
