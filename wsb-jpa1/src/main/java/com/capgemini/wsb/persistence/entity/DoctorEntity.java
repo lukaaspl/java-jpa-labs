@@ -2,6 +2,10 @@ package com.capgemini.wsb.persistence.entity;
 
 import com.capgemini.wsb.persistence.enums.Specialization;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,12 +13,16 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "DOCTOR")
 public class DoctorEntity {
-
+	// #region Fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -28,6 +36,7 @@ public class DoctorEntity {
 	@Column(nullable = false)
 	private String telephoneNumber;
 
+	@Column(nullable = false)
 	private String email;
 
 	@Column(nullable = false)
@@ -37,6 +46,17 @@ public class DoctorEntity {
 	@Enumerated(EnumType.STRING)
 	private Specialization specialization;
 
+	// 1-to-many relationship (parent, bidirectional)
+	@OneToMany(mappedBy = "doctor", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private Set<VisitEntity> visits = new HashSet<>();
+
+	// many-to-many relationship (parent, unidirectional)
+	@ManyToMany
+	@JoinTable(name = "DOCTOR_ADDRESS", joinColumns = @JoinColumn(name = "DOCTOR_ID"), inverseJoinColumns = @JoinColumn(name = "ADDRESS_ID"))
+	private Set<AddressEntity> addresses = new HashSet<>();
+	// #endregion
+
+	// #region Getters and Setters
 	public Long getId() {
 		return id;
 	}
@@ -92,5 +112,5 @@ public class DoctorEntity {
 	public void setSpecialization(Specialization specialization) {
 		this.specialization = specialization;
 	}
-
+	// #endregion
 }

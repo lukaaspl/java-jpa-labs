@@ -1,18 +1,25 @@
 package com.capgemini.wsb.persistence.entity;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "PATIENT")
 public class PatientEntity {
-
+	// #region Fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -26,6 +33,7 @@ public class PatientEntity {
 	@Column(nullable = false)
 	private String telephoneNumber;
 
+	@Column(nullable = false)
 	private String email;
 
 	@Column(nullable = false)
@@ -34,6 +42,17 @@ public class PatientEntity {
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
 
+	// 1-to-many relationship (parent, bidirectional)
+	@OneToMany(mappedBy = "patient", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private Set<VisitEntity> visits = new HashSet<>();
+
+	// many-to-many relationship (parent, unidirectional)
+	@ManyToMany
+	@JoinTable(name = "PATIENT_ADDRESS", joinColumns = @JoinColumn(name = "PATIENT_ID"), inverseJoinColumns = @JoinColumn(name = "ADDRESS_ID"))
+	private Set<AddressEntity> addresses = new HashSet<>();
+	// #endregion
+
+	// #region Getters and Setters
 	public Long getId() {
 		return id;
 	}
@@ -89,5 +108,5 @@ public class PatientEntity {
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-
+	// #endregion
 }

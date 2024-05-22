@@ -1,7 +1,5 @@
 package com.capgemini.wsb.persistence.entity;
 
-import com.capgemini.wsb.persistence.enums.TreatmentType;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,10 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.capgemini.wsb.persistence.enums.TreatmentType;
+
 @Entity
 @Table(name = "MEDICAL_TREATMENT")
 public class MedicalTreatmentEntity {
-
+	// #region Fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -24,7 +24,9 @@ public class MedicalTreatmentEntity {
 
 	@Enumerated(EnumType.STRING)
 	private TreatmentType type;
+	// #endregion
 
+	// #region Getters and Setters
 	public Long getId() {
 		return id;
 	}
@@ -48,5 +50,5 @@ public class MedicalTreatmentEntity {
 	public void setType(TreatmentType type) {
 		this.type = type;
 	}
-
+	// #endregion
 }

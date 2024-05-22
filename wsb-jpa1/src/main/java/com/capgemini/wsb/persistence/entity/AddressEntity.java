@@ -1,5 +1,6 @@
 package com.capgemini.wsb.persistence.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,19 +10,25 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ADDRESS")
 public class AddressEntity {
-
+	// #region Fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(nullable = false)
 	private String city;
 
+	@Column(nullable = false)
 	private String addressLine1;
 
+	@Column(nullable = true)
 	private String addressLine2;
 
+	@Column(nullable = false)
 	private String postalCode;
+	// #endregion
 
+	// #region Getters and Setters
 	public Long getId() {
 		return id;
 	}
@@ -61,5 +68,5 @@ public class AddressEntity {
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
-
+	// #endregion
 }
